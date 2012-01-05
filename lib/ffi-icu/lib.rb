@@ -229,5 +229,16 @@ module ICU
     attach_function :ubrk_following,      "ubrk_following#{suffix}",      [:pointer,       :int32_t], :int32_t
     attach_function :ubrk_isBoundary,     "ubrk_isBoundary#{suffix}",     [:pointer,       :int32_t], :int32_t
 
+    #
+    # Character Conversion
+    #
+    # http://icu-project.org/apiref/icu4c/ucnv_8h.html
+    #
+
+    attach_function :ucnv_open,            "ucnv_open#{suffix}",            [:string,  :pointer],          :pointer
+    attach_function :ucnv_close,           "ucnv_close#{suffix}",           [:pointer],                    :void
+    attach_function :ucnv_getName,         "ucnv_getName#{suffix}",         [:pointer, :pointer],          :string
+    attach_function :ucnv_openAllNames,    "ucnv_openAllNames#{suffix}",    [:pointer],                    :pointer
+    attach_function :ucnv_getStandardName, "ucnv_getStandardName#{suffix}", [:string,  :string, :pointer], :string
   end # Lib
 end # ICU
