@@ -241,5 +241,8 @@ module ICU
     attach_function :ucnv_openAllNames,     "ucnv_openAllNames#{suffix}",     [:pointer],                    :pointer
     attach_function :ucnv_getStandardName,  "ucnv_getStandardName#{suffix}",  [:string,  :string, :pointer], :string
     attach_function :ucnv_getCanonicalName, "ucnv_getCanonicalName#{suffix}", [:string,  :string, :pointer], :string
+
+    attach_function :ucnv_countStandards,   "ucnv_countStandards#{suffix}",   [],                            :uint16
+    attach_function :ucnv_getStandard,      "ucnv_getStandard#{suffix}",      [:uint16,  :pointer],          :string
   end # Lib
 end # ICU

@@ -12,6 +12,14 @@ module ICU
         result
       end
 
+      def self.standards
+        standards_count = Lib.ucnv_countStandards
+
+        (0..(standards_count-1)).map do |i|
+          Lib.check_error { |err| Lib.ucnv_getStandard(i, err) }
+        end
+      end
+
       def initialize(name)
         ptr = Lib.check_error { |err| Lib.ucnv_open(name.to_s, err) }
         @converter = FFI::AutoPointer.new(ptr, Lib.method(:ucnv_close))

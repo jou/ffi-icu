@@ -16,6 +16,13 @@ describe ICU::Conversion::Converter do
     all_names.should_not be_empty
   end
 
+  it "should have a list of supported standards" do
+    standards = Converter.standards
+
+    standards.should be_an(Array)
+    standards.should_not be_empty
+  end
+  
   it "should have a name" do
     c = Converter.new("UTF-8")
     c.name.should == "UTF-8"
