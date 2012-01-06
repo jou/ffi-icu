@@ -24,7 +24,12 @@ module ICU
 
       def standard_name(standard = :iana)
         standard = standard.to_s.upcase
-        Lib.check_error { |err| Lib.ucnv_getStandardName(@given_name, standard, err) }
+        Lib.check_error { |err| Lib.ucnv_getStandardName(name, standard, err) }
+      end
+
+      def canonical_name(standard = :iana)
+        standard = standard.to_s.upcase
+        Lib.check_error { |err| Lib.ucnv_getCanonicalName(name, standard, err) }
       end
     end
   end

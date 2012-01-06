@@ -15,24 +15,42 @@ describe ICU::Conversion::Converter do
     all_names.should be_an(Array)
     all_names.should_not be_empty
   end
-  
-  describe "#name" do
-    it "should return given name if canonical" do
-      c = Converter.new("UTF-8")
-      c.name.should == "UTF-8"
-    end
 
-    it "should normalize the name" do
-      c = Converter.new("UTF8")
-      c.name.should == "UTF-8"
-    end
+  it "should have a name" do
+    c = Converter.new("UTF-8")
+    c.name.should == "UTF-8"
   end
 
   describe "#standard_name" do
-    pending "need to get a clue"
+    expected_names = {
+      "latin1" => "ISO_8859-1:1987",
+      "ISO-8859-1" => "ISO_8859-1:1987",
+      "ISO88591" => "ISO_8859-1:1987",
+      "windows-1252" => "windows-1252",
+      "cp-1252" => "windows-1252",
+      "utf8" => "UTF-8"
+    }
+
+    expected_names.each do |encoding, expected|
+      it "should normalize #{encoding} to #{expected}" do
+        c = Converter.new(encoding)
+        c.standard_name(:iana).should == expected
+      end
+    end
   end
 
   describe "#canonical_name" do
-    pending "need to get a clue"
+    expected_names = {
+      "latin1" => "ISO-8859-1",
+      "ISO-8859-1" => "ISO-8859-1",
+      "ISO88591" => "ISO-8859-1"
+    }
+
+    expected_names.each do |encoding, expected|
+      it "should normalize #{encoding} to #{expected}" do
+        c = Converter.new(encoding)
+        c.canonical_name.should == expected
+      end
+    end
   end
 end

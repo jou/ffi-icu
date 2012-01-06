@@ -235,10 +235,11 @@ module ICU
     # http://icu-project.org/apiref/icu4c/ucnv_8h.html
     #
 
-    attach_function :ucnv_open,            "ucnv_open#{suffix}",            [:string,  :pointer],          :pointer
-    attach_function :ucnv_close,           "ucnv_close#{suffix}",           [:pointer],                    :void
-    attach_function :ucnv_getName,         "ucnv_getName#{suffix}",         [:pointer, :pointer],          :string
-    attach_function :ucnv_openAllNames,    "ucnv_openAllNames#{suffix}",    [:pointer],                    :pointer
-    attach_function :ucnv_getStandardName, "ucnv_getStandardName#{suffix}", [:string,  :string, :pointer], :string
+    attach_function :ucnv_open,             "ucnv_open#{suffix}",             [:string,  :pointer],          :pointer
+    attach_function :ucnv_close,            "ucnv_close#{suffix}",            [:pointer],                    :void
+    attach_function :ucnv_getName,          "ucnv_getName#{suffix}",          [:pointer, :pointer],          :string
+    attach_function :ucnv_openAllNames,     "ucnv_openAllNames#{suffix}",     [:pointer],                    :pointer
+    attach_function :ucnv_getStandardName,  "ucnv_getStandardName#{suffix}",  [:string,  :string, :pointer], :string
+    attach_function :ucnv_getCanonicalName, "ucnv_getCanonicalName#{suffix}", [:string,  :string, :pointer], :string
   end # Lib
 end # ICU
